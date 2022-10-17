@@ -15,8 +15,44 @@ const AddEdit = () => {
   const [state, setState] = useState(initialState)
   const [data, setData] = useState({})
   const {title, description, fullDescription} = state
-
   const navigate = useNavigate()
+  const {id} = useParams()
+
+  useEffect(() => {
+    fireDb.child("tasks").on("value", (snapshop) => {
+      if (snapshop.val() !== null) 
+      {
+        setData({...snapshop.val()})
+      }
+
+      else
+      {
+        setData({})
+      }
+    })
+
+    return () => {
+      setData({})
+    }
+  }, [id])
+  
+  useEffect(() => {
+    if(id) 
+    {
+      setState({...data[id]})
+    }
+
+    else
+    {
+      setState({...initialState})
+    }
+
+    return () => {
+      setState({...initialState})
+    }
+
+  }, [id, data])
+
 
   const handleInputChange = (e) => {
     const {name, value} = e.target
@@ -56,7 +92,7 @@ const AddEdit = () => {
             id="title"
             name="title"
             placeholder="Título tarefa"
-            value={title}
+            value={title || ""}
             onChange={handleInputChange}
              />
           <label htmlFor="description">Descrição</label>
@@ -65,7 +101,7 @@ const AddEdit = () => {
             id="description"
             name="description"
             placeholder="Breve descrição tarefa"
-            value={description}
+            value={description || ""}
             onChange={handleInputChange}
              />
           <label htmlFor="fullDescription">Descrição detalhada</label>
@@ -74,10 +110,10 @@ const AddEdit = () => {
             id="fullDescription"
             name="fullDescription"
             placeholder="Descrição completa tarefa"
-            value={fullDescription}
+            value={fullDescription || ""}
             onChange={handleInputChange}
              />
-          <input type="submit" value="Save" />
+          <input type="submit" value={id ? "Atualizar" : "Salvar"} />
         </form>
     </div>
   )
