@@ -4,6 +4,24 @@ import "./Header.css";
 
 const Header = () => {
   const [activeTab, setActiveTab] = useState("Home");
+  const location = useLocation();
+
+  useEffect(() => {
+    if(location.pathname === "/")
+    {
+        setActiveTab("Home");
+    }
+
+    else if(location.pathname === "/add")
+    {
+        setActiveTab("AddTask");
+    }
+
+    else if(location.pathname === "/about")
+    {
+        setActiveTab("About");
+    }
+  }, [location])
 
   return (
     <div className="header">
