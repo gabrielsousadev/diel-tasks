@@ -23,8 +23,7 @@ const Search = () => {
       .orderByChild("title")
       .equalTo(search)
       .on("value", (snapshot) => {
-        if (snapshot.val()) 
-        {
+        if (snapshot.val()) {
           const data = snapshot.val();
           setData(data);
         }
@@ -34,28 +33,32 @@ const Search = () => {
   return (
     <>
       <div className="content">
-        <table className="styledTable">
-          <thead>
-            <tr>
-              <th>Número</th>
-              <th>Título</th>
-              <th>Descrição</th>
-              <th>Descrição completa</th>
-            </tr>
-          </thead>
-          <tbody>
-            {Object.keys(data).map((id, index) => {
-              return (
-                <tr key={id}>
-                  <th scope="row">{index + 1}</th>
-                  <td>{data[id].title}</td>
-                  <td>{data[id].description}</td>
-                  <td>{data[id].fullDescription}</td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
+        {Object.keys(data).length === 0 ? (
+          <h2>Nenhuma informação encontrada : {query.get("title")}</h2>
+        ) : (
+          <table className="styledTable">
+            <thead>
+              <tr>
+                <th>Número</th>
+                <th>Título</th>
+                <th>Descrição</th>
+                <th>Descrição completa</th>
+              </tr>
+            </thead>
+            <tbody>
+              {Object.keys(data).map((id, index) => {
+                return (
+                  <tr key={id}>
+                    <th scope="row">{index + 1}</th>
+                    <td>{data[id].title}</td>
+                    <td>{data[id].description}</td>
+                    <td>{data[id].fullDescription}</td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        )}
       </div>
     </>
   );
