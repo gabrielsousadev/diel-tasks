@@ -7,6 +7,9 @@ import { toast } from 'react-toastify';
 const Home = () => {
 
   const [data, setData] = useState({});
+  const [sortedData, setSortedData] = useState([]);
+  const [sort, setSort] = useState(false);
+
 
   useEffect(() => {
     fireDb.child("tasks").on("value", (snapshop) => {
@@ -42,6 +45,19 @@ const Home = () => {
       })
     }
   }
+  const handleChange = (e) => {
+    setSort(true)
+    fireDb.child("tasks").orderByChild(`${e.target.value}`).on("value", snapshot => {
+      let sortedData = []
+      snapshot.forEach((snap) => {
+        sortedData.push(snap.val())
+      })
+      setSortedData(sortedData)
+    })
+  }
+  const handleReset = () => {
+    setSort(false)
+  }
 
     return (
       <div className="content">
@@ -52,10 +68,11 @@ const Home = () => {
               <th>Título</th>
               <th>Descrição</th>
               <th>Descrição completa</th>
-              <th>Ações</th>
+              {!sort && (<th>Ações</th>)}
             </tr>
           </thead>
-          <tbody>
+          {!sort && (
+            <tbody>
             {Object.keys(data).map((id, index) => {
               return (
                 <tr key={id}>
@@ -76,7 +93,30 @@ const Home = () => {
               )
             })}
           </tbody>
+          )}
+          {sort && (
+            <tbody>
+              {sortedData.map((item, index) => {
+                return (
+                  <tr key={index}>
+                  <th scope="row">{index + 1}</th>
+                  <td>{item.title}</td>
+                  <td>{item.description}</td>
+                  <td>{item.fullDescription}</td>
+                  </tr>
+                )
+              })}
+            </tbody>
+          )}
         </table>
+        <label>Listar por:</label>
+        <select className="dropdown" name="colValue" onChange={handleChange}>
+          <option>Selecione</option>
+          <option value="title">Título</option>
+          <option value="description">Descrição</option>
+          <option value="fullDescription">Descrição completa</option>
+        </select>
+        <button className="btn btnReset" onClick={handleReset}>Resetar</button>
       </div>
     )
 }
