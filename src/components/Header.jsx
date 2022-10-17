@@ -6,43 +6,36 @@ const Header = () => {
   const [activeTab, setActiveTab] = useState("Home");
   const location = useLocation();
   const [search, setSearch] = useState("");
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   useEffect(() => {
-    if(location.pathname === "/")
-    {
-        setActiveTab("Home");
+    if (location.pathname === "/") {
+      setActiveTab("Home");
+    } else if (location.pathname === "/add") {
+      setActiveTab("AddTask");
+    } else if (location.pathname === "/about") {
+      setActiveTab("About");
     }
-
-    else if(location.pathname === "/add")
-    {
-        setActiveTab("AddTask");
-    }
-
-    else if(location.pathname === "/about")
-    {
-        setActiveTab("About");
-    }
-  }, [location])
+  }, [location]);
 
   const handleSubmit = (e) => {
-    e.preventDefault()
-    navigate(`/search?task=${search}`)
-    setSearch("")
-  }
+    e.preventDefault();
+    navigate(`/search?task=${search}`);
+    setSearch("");
+  };
 
   return (
     <div className="header">
       <p className="logo">Tasks</p>
       <div className="headerRight">
         <form onSubmit={handleSubmit} className="form">
-          <input 
+          <input
             type="text"
             className="inputfield"
             placeholder="Pesquisar tarefa.."
             onChange={(e) => setSearch(e.target.value)}
             value={search}
-           />
+          />
         </form>
         <Link to="/">
           <p

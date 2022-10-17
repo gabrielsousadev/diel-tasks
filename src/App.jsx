@@ -13,6 +13,7 @@ import AddEdit from "./pages/AddEdit";
 import Home from "./pages/Home";
 import View from "./pages/View";
 import './App.css';
+import Search from "./pages/Search";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
           <Route path="/update/:id" element={<AddEdit />} />
           <Route path="/view/:id" element={<View />} />
           <Route path="/about" element={<About />} />
+          <Route path="/search" element={<Search />} />
         </Routes>
       </div>
     </BrowserRouter>
