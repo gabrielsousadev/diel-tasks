@@ -12,14 +12,14 @@ import About from "./pages/About";
 import AddEdit from "./pages/AddEdit";
 import Home from "./pages/Home";
 import View from "./pages/View";
-import './App.css';
+import "./App.css";
 import Search from "./pages/Search";
 
 function App() {
   return (
     <BrowserRouter>
       <div className="App">
-        <Header/>
+        <Header />
         <ToastContainer position="top-center" />
         <Routes>
           <Route path="/" element={<Home />} />

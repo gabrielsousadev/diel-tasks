@@ -46,10 +46,6 @@ const View = () => {
             <span>{task.description}</span>
             <br />
             <br />
-            <strong>Descrição completa: </strong>
-            <span>{task.fullDescription}</span>
-            <br />
-            <br />
             <Link to="/">
               <button className="btn btnEdit">Voltar</button>
             </Link>

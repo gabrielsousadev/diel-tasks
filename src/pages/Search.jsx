@@ -34,7 +34,7 @@ const Search = () => {
     <>
       <div className="content">
         <Link to="/">
-            <button className="btn btnEdit">Voltar</button>
+          <button className="btn btnEdit">Voltar</button>
         </Link>
         {Object.keys(data).length === 0 ? (
           <h2>Nenhuma informação encontrada : {query.get("title")}</h2>
@@ -45,7 +45,6 @@ const Search = () => {
                 <th>Número</th>
                 <th>Título</th>
                 <th>Descrição</th>
-                <th>Descrição completa</th>
                 <th>Prioridade</th>
               </tr>
             </thead>
@@ -56,7 +55,6 @@ const Search = () => {
                     <th scope="row">{index + 1}</th>
                     <td>{data[id].title}</td>
                     <td>{data[id].description}</td>
-                    <td>{data[id].fullDescription}</td>
                     <td>{data[id].priority}</td>
                   </tr>
                 );
