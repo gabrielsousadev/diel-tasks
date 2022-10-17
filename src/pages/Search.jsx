@@ -33,6 +33,9 @@ const Search = () => {
   return (
     <>
       <div className="content">
+        <Link to="/">
+            <button className="btn btnEdit">Voltar</button>
+        </Link>
         {Object.keys(data).length === 0 ? (
           <h2>Nenhuma informação encontrada : {query.get("title")}</h2>
         ) : (
