@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import fireDb from '../firebase';
 import { Link } from 'react-router-dom';
 import './Home.css';
+import { toast } from 'react-toastify';
 
 const Home = () => {
 
@@ -25,7 +26,22 @@ const Home = () => {
     }
   }, [])  
 
-  
+  const onDelete = (id) => {
+    if (window.confirm("Você tem certeza que quer apagar esta tarefa?")) 
+    {
+      fireDb.child(`tasks/${id}`).remove((err) => {
+        if(err)
+        {
+          toast.error(err)
+        }
+
+        else
+        {
+          toast.success("Tarefa apagada com sucesso!")
+        }
+      })
+    }
+  }
 
     return (
       <div className="content">
@@ -51,7 +67,7 @@ const Home = () => {
                     <Link to={`/update/${id}`}>
                       <button className="btn btnEdit">Editar</button>
                     </Link>
-                    <button className="btn btnDelete">Apagar</button>
+                    <button className="btn btnDelete" onClick={() => onDelete(id)}>Apagar</button>
                     <Link to={`/view/${id}`}>
                       <button className="btn btnEdit">Visualizar</button>
                     </Link>
