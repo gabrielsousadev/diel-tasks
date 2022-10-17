@@ -68,17 +68,36 @@ const AddEdit = () => {
 
     else
     {
-      fireDb.child("tasks").push(state, (error) => {
-        if(error)
-        {
-          toast.error(error)
-        }
+      if (!id) 
+      {
+        fireDb.child("tasks").push(state, (error) => {
+          if(error)
+          {
+            toast.error(error)
+          }
+  
+          else
+          {
+            toast.success("Tarefa adicionada com sucesso.");
+          }
+        })
+      }
 
-        else
-        {
-          toast.success("Tarefa adicionada com sucesso.");
-        }
-      })
+      else
+      {
+        fireDb.child(`tasks/${id}`).set(state, (error) => {
+          if(error)
+          {
+            toast.error(error)
+          }
+  
+          else
+          {
+            toast.success("Tarefa Atualizada com sucesso.");
+          }
+        })
+      }
+    
       setTimeout(() => navigate("/"), 500);
     }
   }
