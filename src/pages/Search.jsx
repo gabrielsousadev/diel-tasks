@@ -46,6 +46,7 @@ const Search = () => {
                 <th>Título</th>
                 <th>Descrição</th>
                 <th>Descrição completa</th>
+                <th>Prioridade</th>
               </tr>
             </thead>
             <tbody>
@@ -56,6 +57,7 @@ const Search = () => {
                     <td>{data[id].title}</td>
                     <td>{data[id].description}</td>
                     <td>{data[id].fullDescription}</td>
+                    <td>{data[id].priority}</td>
                   </tr>
                 );
               })}

@@ -57,6 +57,31 @@ const Home = () => {
   }
   const handleReset = () => {
     setSort(false)
+    fireDb.child("tasks").on("value", (snapshop) => {
+      if (snapshop.val() !== null) 
+      {
+        setData({...snapshop.val()})
+      }
+
+      else
+      {
+        setData({})
+      }
+    })
+  }
+
+  const filterData = (value) => {
+    fireDb
+      .child("tasks")
+      .orderByChild("priority")
+      .equalTo(value)
+      .on("value", (snapshot) => {
+        if(snapshot.val())
+        {
+          const data = snapshot.val()
+          setData(data)
+        }
+      })
   }
 
     return (
@@ -105,6 +130,7 @@ const Home = () => {
                   <td>{item.title}</td>
                   <td>{item.description}</td>
                   <td>{item.fullDescription}</td>
+                  <td>{item.priority}</td>
                   </tr>
                 )
               })}
@@ -119,6 +145,10 @@ const Home = () => {
           <option value="fullDescription">Descrição completa</option>
         </select>
         <button className="btn btnReset" onClick={handleReset}>Resetar</button>
+        <br />
+        <label>Status:</label>
+        <button className="btn btnActive" onClick={() => filterData("Alta")}>Alta</button>
+        <button className="btn btnInactive" onClick={() => filterData("Baixa")}>Baixa</button>
       </div>
     )
 }
