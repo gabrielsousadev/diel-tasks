@@ -8,12 +8,13 @@ const initialState = {
   title: "",
   description: "",
   fullDescription: "",
+  priority: ""
 };
 
 const AddEdit = () => {
   const [state, setState] = useState(initialState);
   const [data, setData] = useState({});
-  const { title, description, fullDescription } = state;
+  const { title, description, fullDescription, priority } = state;
   const navigate = useNavigate();
   const { id } = useParams();
 
@@ -50,7 +51,7 @@ const AddEdit = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!title || !description || !fullDescription) {
+    if (!title || !description || !fullDescription || !priority) {
       toast.error("Por favor preencher todas as informações.");
     } else {
       if (!id) {
@@ -103,6 +104,15 @@ const AddEdit = () => {
           name="fullDescription"
           placeholder="Descrição completa tarefa"
           value={fullDescription || ""}
+          onChange={handleInputChange}
+        />
+        <label htmlFor="priority">Prioridade</label>
+        <input
+          type="text"
+          id="priority"
+          name="priority"
+          placeholder="Prioridade"
+          value={priority || ""}
           onChange={handleInputChange}
         />
         <input type="submit" value={id ? "Atualizar" : "Salvar"} />

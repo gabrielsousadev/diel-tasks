@@ -68,6 +68,7 @@ const Home = () => {
               <th>Título</th>
               <th>Descrição</th>
               <th>Descrição completa</th>
+              <th>Prioridade</th>
               {!sort && (<th>Ações</th>)}
             </tr>
           </thead>
@@ -80,6 +81,7 @@ const Home = () => {
                   <td>{data[id].title}</td>
                   <td>{data[id].description}</td>
                   <td>{data[id].fullDescription}</td>
+                  <td>{data[id].priority}</td>
                   <td>
                     <Link to={`/update/${id}`}>
                       <button className="btn btnEdit">Editar</button>
