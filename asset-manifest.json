@@ -1,16 +1,13 @@
 {
   "files": {
-    "main.css": "/diel-tasks/static/css/main.073c9b0a.css",
-    "main.js": "/diel-tasks/static/js/main.7bf7b42f.js",
-    "static/js/787.e0ef34e1.chunk.js": "/diel-tasks/static/js/787.e0ef34e1.chunk.js",
-    "static/media/logo.svg": "/diel-tasks/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
+    "main.css": "/diel-tasks/static/css/main.d15e1daf.css",
+    "main.js": "/diel-tasks/static/js/main.ce7f49c3.js",
     "index.html": "/diel-tasks/index.html",
-    "main.073c9b0a.css.map": "/diel-tasks/static/css/main.073c9b0a.css.map",
-    "main.7bf7b42f.js.map": "/diel-tasks/static/js/main.7bf7b42f.js.map",
-    "787.e0ef34e1.chunk.js.map": "/diel-tasks/static/js/787.e0ef34e1.chunk.js.map"
+    "main.d15e1daf.css.map": "/diel-tasks/static/css/main.d15e1daf.css.map",
+    "main.ce7f49c3.js.map": "/diel-tasks/static/js/main.ce7f49c3.js.map"
   },
   "entrypoints": [
-    "static/css/main.073c9b0a.css",
-    "static/js/main.7bf7b42f.js"
+    "static/css/main.d15e1daf.css",
+    "static/js/main.ce7f49c3.js"
   ]
 }
