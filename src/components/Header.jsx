@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, Navigate, useNavigate } from "react-router-dom";
 import "./Header.css";
 
 const Header = () => {
   const [activeTab, setActiveTab] = useState("Home");
   const location = useLocation();
+  const [search, setSearch] = useState("");
+  const navigate = useNavigate()
 
   useEffect(() => {
     if(location.pathname === "/")
@@ -23,10 +25,25 @@ const Header = () => {
     }
   }, [location])
 
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    navigate(`/search?task=${search}`)
+    setSearch("")
+  }
+
   return (
     <div className="header">
       <p className="logo">Tasks</p>
       <div className="headerRight">
+        <form onSubmit={handleSubmit} className="form">
+          <input 
+            type="text"
+            className="inputfield"
+            placeholder="Pesquisar tarefa.."
+            onChange={(e) => setSearch(e.target.value)}
+            value={search}
+           />
+        </form>
         <Link to="/">
           <p
             className={`${activeTab === "Home" ? "active" : ""}`}
