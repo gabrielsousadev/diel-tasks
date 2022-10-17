@@ -45,6 +45,8 @@ const Search = () => {
                 <th>Número</th>
                 <th>Título</th>
                 <th>Descrição</th>
+                <th>Data</th>
+                <th>Dias</th>
                 <th>Prioridade</th>
               </tr>
             </thead>
@@ -55,6 +57,8 @@ const Search = () => {
                     <th scope="row">{index + 1}</th>
                     <td>{data[id].title}</td>
                     <td>{data[id].description}</td>
+                    <td>{data[id].date}</td>
+                    <td>{data[id].days}</td>
                     <td>{data[id].priority}</td>
                   </tr>
                 );

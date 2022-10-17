@@ -26,7 +26,9 @@ const Header = () => {
 
   return (
     <div className="header">
+      <Link to="/">
       <p className="logo">Tasks</p>
+      </Link>
       <div className="headerRight">
         <form onSubmit={handleSubmit} className="form">
           <input

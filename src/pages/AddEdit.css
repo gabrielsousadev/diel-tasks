@@ -1,17 +1,19 @@
 .content
 {
     margin-top: 100px;
+    padding: 20px 20px;
 }
 
-.form
+.formFields
 {
     margin: auto;
-    padding: 15px;
-    max-width: 400px;
+    max-width: 500px;
     align-content: center;
 }
 
 input[type="text"],
+input[type="date"],
+input[type="number"],
 select
 {
     width: 100%;

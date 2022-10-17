@@ -92,6 +92,8 @@ const Home = () => {
               <th>Número</th>
               <th>Título</th>
               <th>Descrição</th>
+              <th>Data</th>
+              <th>Dias</th>
               <th>Prioridade</th>
               {!sort && (<th>Ações</th>)}
             </tr>
@@ -104,6 +106,8 @@ const Home = () => {
                   <th scope="row">{index + 1}</th>
                   <td>{data[id].title}</td>
                   <td>{data[id].description}</td>
+                  <td>{data[id].date}</td>
+                  <td>{data[id].days}</td>
                   <td>{data[id].priority}</td>
                   <td>
                     <Link to={`/update/${id}`}>
@@ -127,6 +131,8 @@ const Home = () => {
                   <th scope="row">{index + 1}</th>
                   <td>{item.title}</td>
                   <td>{item.description}</td>
+                  <td>{item.date}</td>
+                  <td>{item.days}</td>
                   <td>{item.priority}</td>
                   </tr>
                 )
@@ -139,6 +145,7 @@ const Home = () => {
           <option>Selecione</option>
           <option value="title">Título</option>
           <option value="description">Descrição</option>
+          <option value="date">Data</option>
         </select>
         <button className="btn btnReset" onClick={handleReset}>Resetar</button>
         <br />

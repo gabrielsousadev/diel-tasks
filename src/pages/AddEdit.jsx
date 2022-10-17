@@ -7,13 +7,15 @@ import "./AddEdit.css";
 const initialState = {
   title: "",
   description: "",
+  date: "",
+  days: "",
   priority: ""
 };
 
 const AddEdit = () => {
   const [state, setState] = useState(initialState);
   const [data, setData] = useState({});
-  const { title, description, priority } = state;
+  const { title, description, priority, date, days } = state;
   const navigate = useNavigate();
   const { id } = useParams();
 
@@ -50,7 +52,7 @@ const AddEdit = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!title || !description || !priority) {
+    if (!title || !description || !priority || !date || !days) {
       toast.error("Por favor preencher todas as informações.");
     } else {
       if (!id) {
@@ -77,7 +79,7 @@ const AddEdit = () => {
 
   return (
     <div className="content">
-      <form className="form" onSubmit={handleSubmit}>
+      <form className="formFields" onSubmit={handleSubmit}>
         <label htmlFor="title">Título</label>
         <input
           type="text"
@@ -92,8 +94,26 @@ const AddEdit = () => {
           type="text"
           id="description"
           name="description"
-          placeholder="Breve descrição tarefa"
+          placeholder="Breve descrição da tarefa"
           value={description || ""}
+          onChange={handleInputChange}
+        />
+        <label htmlFor="date">Data</label>
+        <input
+          type="date"
+          id="date"
+          name="date"
+          placeholder="Data"
+          value={date || ""}
+          onChange={handleInputChange}
+        />
+        <label htmlFor="days">Dias</label>
+        <input
+          type="number"
+          id="days"
+          name="days"
+          placeholder="Dias"
+          value={days || ""}
           onChange={handleInputChange}
         />
         <label htmlFor="priority">Prioridade</label>
